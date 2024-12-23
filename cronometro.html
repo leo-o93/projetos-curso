@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cronômetro</title>
+</head>
+<body>
+    <h1>Cronômetro</h1>
+    <p id="timer">00:00:00</p>
+    <button onclick="start()">Iniciar</button>
+    <button onclick="stop()">Parar</button>
+    <button onclick="reset()">Resetar</button>
+    <script>
+        let seconds = 0;
+        let interval;
+        
+        function start() {
+            
+            stop();
+            interval = setInterval(() => {
+                seconds++;
+                document.getElementById('timer').innerText = new Date(seconds * 1000).toISOString().substr(11, 8);
+            }, 1000);
+        }
+        function stop() { clearInterval(interval); }
+        function reset() { stop(); seconds = 0; document.getElementById('timer').innerText = '00:00:00'; }
+    </script>
+</body>
+</html>
